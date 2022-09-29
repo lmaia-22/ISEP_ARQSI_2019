@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "24a34b65-9a85-4521-a628-d18141e3233c",
+		"name": "Mocks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List of all Orders - Mock",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVkZTc3Y2M1NTlmNzg1MGRlM2UxYzg3NiIsImlhdCI6MTU3NTQ5MzE3NywiZXhwIjoxNTc1NDk2Nzc3fQ.GM7Z8wJeK6GDNGMWyS_Woi7ifv2Vw5TaZFPzbTNRxWA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url_o}}/orders",
+					"host": [
+						"{{base_url_o}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of specific Order - Mock",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVkZTc3Y2M1NTlmNzg1MGRlM2UxYzg3NiIsImlhdCI6MTU3NTQ5MzE3NywiZXhwIjoxNTc1NDk2Nzc3fQ.GM7Z8wJeK6GDNGMWyS_Woi7ifv2Vw5TaZFPzbTNRxWA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url_o}}/orders/1",
+					"host": [
+						"{{base_url_o}}"
+					],
+					"path": [
+						"orders",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Specific Order - Mock",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVkZTc3Y2M1NTlmNzg1MGRlM2UxYzg3NiIsImlhdCI6MTU3NTQ5MzE3NywiZXhwIjoxNTc1NDk2Nzc3fQ.GM7Z8wJeK6GDNGMWyS_Woi7ifv2Vw5TaZFPzbTNRxWA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url_o}}/orders/1",
+					"host": [
+						"{{base_url_o}}"
+					],
+					"path": [
+						"orders",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Specific Order - Mock",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVkZTc3Y2M1NTlmNzg1MGRlM2UxYzg3NiIsImlhdCI6MTU3NTQ5MzE3NywiZXhwIjoxNTc1NDk2Nzc3fQ.GM7Z8wJeK6GDNGMWyS_Woi7ifv2Vw5TaZFPzbTNRxWA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"quantity\": 5,\r\n        \"date\": \"2020-01-29T09:18:16.896Z\",\r\n        \"product\": [\r\n            {\r\n                \"_id\": \"3\",\r\n                \"orderId\": \"1\",\r\n                \"name\": \"Fantastic Fresh Hat\",\r\n                \"price\": \"322.00\"\r\n            }\r\n        ],\r\n        \"user\": [\r\n            {\r\n                \"_id\": \"3\",\r\n                \"orderId\": \"1\",\r\n                \"name\": \"Bennie.Watsica\",\r\n                \"email\": \"Elta_Murphy11@example.com\",\r\n                \"password\": \"w2xPACjLddSdWAH\",\r\n                \"address\": \"086 Bergstrom Meadow\",\r\n                \"role\": false\r\n            }\r\n        ]\r\n    }"
+				},
+				"url": {
+					"raw": "{{base_url_o}}/orders/1",
+					"host": [
+						"{{base_url_o}}"
+					],
+					"path": [
+						"orders",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Specific Order - Mock",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVkZTc3Y2M1NTlmNzg1MGRlM2UxYzg3NiIsImlhdCI6MTU3NTQ5MzE3NywiZXhwIjoxNTc1NDk2Nzc3fQ.GM7Z8wJeK6GDNGMWyS_Woi7ifv2Vw5TaZFPzbTNRxWA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"quantity\": 21,\r\n        \"date\": \"2020-08-29T09:18:16.896Z\",\r\n        \"product\": [\r\n            {\r\n                \"_id\": 3,\r\n                \"orderId\": 1,\r\n                \"name\": \"Fantastic Fresh Hat\",\r\n                \"price\": \"543.00\"\r\n            }\r\n        ],\r\n        \"user\": [\r\n            {\r\n                \"_id\": 3,\r\n                \"orderId\": 1,\r\n                \"name\": \"Bennie.Watsica\",\r\n                \"email\": \"Elta_Murphy11@example.com\",\r\n                \"password\": \"w2xPACjLddSdWAH\",\r\n                \"address\": \"086 Bergstrom Meadow\",\r\n                \"role\": false\r\n            }\r\n        ]\r\n    }"
+				},
+				"url": {
+					"raw": "{{base_url_o}}/orders/",
+					"host": [
+						"{{base_url_o}}"
+					],
+					"path": [
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c3577a42-a44c-45d8-add8-d886415bbeed",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8b1bf225-614f-4d81-a2f6-a1f4a655bf0b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8b4fac15-21d0-4d6c-9be2-265e062788f6",
+			"key": "base_url_o",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "e9b5cfee-d0cf-489b-8937-ddb2f28924a7",
+			"key": "base_url_u",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

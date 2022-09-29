@@ -1,0 +1,470 @@
+SERVICES:
+
+import { TestBed } from '@angular/core/testing';
+
+import { OrderService } from './order.service';
+
+describe('OrderService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
+
+  it('should be created', () => {
+    const service: OrderService = TestBed.get(OrderService);
+    expect(service).toBeTruthy();
+  });
+});
+
+
+import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Order } from '../../../models/orders/order';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorHandler, HandleError } from '../../http-error-handler.service';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': '*',
+    'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'   
+  })
+} 
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class OrderService {
+  id:number;
+  orders:string = 'http://localhost:44375/api/order';
+  private handleError: HandleError;
+
+    constructor(private http: HttpClient,
+      httpErrorHandler: HttpErrorHandler) { 
+        this.handleError = httpErrorHandler.createHandleError('OrderService');
+    }
+
+    // get all
+    getOrders():Observable<Order[]>{
+      //get todos os eventos
+      return this.http.get<Order[]>(`${this.orders}`, httpOptions);
+    }
+
+    //get by id
+    getOrder(Id):Observable<Order>{
+      //get todos os eventos
+      return this.http.get<Order>(`${this.orders}/${Id}`, httpOptions);
+    }
+
+     /** POST: add a new Order to the database */
+    postOrder (order: Order): Observable<Order> {
+    return this.http.post<Order>(`${this.orders}`, order, httpOptions)
+      .pipe(
+        catchError(this.handleError('Postorder', order))
+          );
+    }
+
+  //    /** PUT: update the hero on the server. Returns the updated hero upon success. */
+  updateOrder (Id, order: Order): Observable<Order> {
+    return this.http.put<Order>(`${this.orders}/${Id}`, order, httpOptions)
+      .pipe(
+        catchError(this.handleError('updateOrder', order))
+      );
+  }
+
+  /** DELETE: delete the product from the server */
+  deleteOrder (id: number): Observable<{}> {
+    const url = `${this.orders}/${id}`; // DELETE api/Order/2
+    return this.http.delete(url, httpOptions)
+      .pipe(
+        catchError(this.handleError('deleteOrder '))
+      );
+  }
+
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+SERVICES:
+
+import { TestBed } from '@angular/core/testing';
+
+import { UserService } from './user.service';
+
+describe('UserService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
+
+  it('should be created', () => {
+    const service: UserService = TestBed.get(UserService);
+    expect(service).toBeTruthy();
+  });
+});
+
+
+
+import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from '../../../models/orders/user';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorHandler, HandleError } from '../../http-error-handler.service';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': '*',
+    'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'   
+  })
+} 
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class UserService {
+  id:number;
+  users:string = 'http://localhost:44375/api/user';
+  private handleError: HandleError;
+
+    constructor(private http: HttpClient,
+      httpErrorHandler: HttpErrorHandler) { 
+        this.handleError = httpErrorHandler.createHandleError('UserService');
+    }
+
+    // get all
+    getUsers():Observable<User[]>{
+      //get todos os eventos
+      return this.http.get<User[]>(`${this.users}`, httpOptions);
+    }
+
+    //get by id
+    getUser(Id):Observable<User>{
+      //get todos os eventos
+      return this.http.get<User>(`${this.users}/${Id}`, httpOptions);
+    }
+
+     /** POST: add a new User to the database */
+    postUser (user: User): Observable<User> {
+    return this.http.post<User>(`${this.users}`, user, httpOptions)
+      .pipe(
+        catchError(this.handleError('Postuser', user))
+          );
+    }
+
+  //    /** PUT: update the hero on the server. Returns the updated hero upon success. */
+  updateUser (Id, user: User): Observable<User> {
+    return this.http.put<User>(`${this.users}/${Id}`, user, httpOptions)
+      .pipe(
+        catchError(this.handleError('updateUser', user))
+      );
+  }
+
+  /** DELETE: delete the product from the server */
+  deleteUser (id: number): Observable<{}> {
+    const url = `${this.users}/${id}`; // DELETE api/User/2
+    return this.http.delete(url, httpOptions)
+      .pipe(
+        catchError(this.handleError('deleteProduct '))
+      );
+  }
+    
+}
+
+------------------------------------------------------------------------------------------------------------------------------
+
+COMPONENT:
+
+	OPTIONSO: (FALTA)
+	
+	<div class="w-100 text-center">
+    <ngb-tabset>
+        <ngb-tab title="Order">
+            <ng-template ngbTabContent>
+                <div class="mt-3">
+                    <app-order></app-order>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="User">
+            <ng-template ngbTabContent>
+                <div class="mt-3">
+                    <app-user></app-user>
+                </div>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</div>
+
+
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { OptionsoComponent } from './optionso.component';
+
+describe('OptionsoComponent', () => {
+  let component: OptionsoComponent;
+  let fixture: ComponentFixture<OptionsoComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ OptionsoComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(OptionsoComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-optionso',
+  templateUrl: './optionso.component.html',
+  styleUrls: ['./optionso.component.css']
+})
+export class OptionsoComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+COMPONENT:
+
+	ORDER
+	
+	import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
+import { OrderService } from '../../../services/orders/order/order.service';
+import { Order } from '../../../models/Orders/order';
+import { NgForm } from '@angular/forms';
+
+@Component({
+  selector: 'app-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.css']
+})
+export class OrderComponent implements OnInit {
+
+  orders:Order[];
+
+  constructor(private orderservice: OrderService,
+    private activatedRoute: ActivatedRoute,
+    private modalService: NgbModal,
+    private router: Router) { }
+
+    //edit & new
+    order:Order;
+    closeResult: string;
+    id: number;
+    supplier: string;
+    quantity: number;
+    date: Date;
+
+  ngOnInit() {
+    this.orderservice.getOrders().subscribe(order => {
+      this.orders = order;
+  });
+
+}
+ //Open edit pop-up
+ open(content, id) {
+  console.log(id);
+  this.orderservice.getOrder(id).subscribe(order => {
+  this.order = order;
+  console.log(this.order);
+});
+
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+
+//POST
+onSubmit(f1: NgForm): void{ 
+  console.log(this.quantity)
+    // The server will generate the id for this new hero
+    const newOrder: Order = {  
+      quantity: this.quantity,
+      supplier: this.supplier,
+      date: this.date
+    } as Order;
+    this.orderservice.postOrder(newOrder)
+      .subscribe(order => this.orders.push(order));
+}
+
+//PUT
+putOrder(Id){
+  console.log(Id);    
+  const editOrder: Order = {  
+    quantity: this.quantity,
+    supplier: this.supplier,
+    date: this.date
+      } as Order;
+      this.orderservice.updateOrder(Id, editOrder)
+        .subscribe(order => {
+          var index = this.orders.findIndex(o => o.id == Id);
+          this.orders[index] = order;
+        })
+       // window.location.reload();
+      }
+
+private getDismissReason(reason: any): string {
+  if (reason === ModalDismissReasons.ESC) {
+    return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    return 'by clicking on a backdrop';
+  } else {
+    return  `with: ${reason}`;
+  }
+}
+
+delete(id): void {
+  this.orderservice.deleteOrder(id).subscribe(
+    () => {
+      var index = this.orders.findIndex(o => o.id == id);
+      this.orders.slice(index,1);
+    })
+    window.location.reload();
+}
+
+}
+
+
+
+
+
+
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
+import { NgForm } from '@angular/forms';
+import { User } from 'src/app/models/Orders/user';
+import { UserService } from 'src/app/services/orders/user/user.service';
+
+@Component({
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
+})
+export class UserComponent implements OnInit {
+
+  users:User[];
+
+  constructor(private userservice: UserService,
+    private activatedRoute: ActivatedRoute,
+    private modalService: NgbModal,
+    private router: Router) { }
+
+    //edit & new
+    user:User;
+    closeResult: string;
+    name:string;
+    id: number;
+    email: string;
+    password: string;
+    address: string;
+    role: string;
+
+  ngOnInit() {
+    this.userservice.getUsers().subscribe(user => {
+      this.users = user
+  });
+
+}
+ //Open edit pop-up
+ open(content, id) {
+  console.log(id);
+  this.userservice.getUsers(id).subscribe(user => {
+  this.user = user;
+  console.log(this.user);
+});
+
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+
+//POST
+onSubmit(f1: NgForm): void{ 
+  console.log(this.name)
+    // The server will generate the id for this new hero
+    const newUser: User = {  
+      name: this.name,
+      role: this.role,
+      email: this.email,
+      password: this.password,
+      address: this.address
+    } as User;
+    this.userservice.postUser(newUser)
+      .subscribe(user => this.users.push(user));
+}
+
+//PUT
+putUser(Id){
+  console.log(Id);    
+  const editUser: User = {  
+        name: this.name,
+        role: this.role,
+        email: this.email,
+        password: this.password,
+        address: this.address
+      } as User;
+      this.userservice.updateUser(Id, editUser)
+        .subscribe(user => {
+          var index = this.users.findIndex(o => o.id == Id);
+          this.users[index] = user;
+        })
+       // window.location.reload();
+      }
+
+private getDismissReason(reason: any): string {
+  if (reason === ModalDismissReasons.ESC) {
+    return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    return 'by clicking on a backdrop';
+  } else {
+    return  `with: ${reason}`;
+  }
+}
+
+delete(id): void {
+  this.userservice.deleteUser(id).subscribe(
+    () => {
+      var index = this.users.findIndex(o => o.id == id);
+      this.users.slice(index,1);
+    })
+    window.location.reload();
+}
+
+}
+
+
+
+
+

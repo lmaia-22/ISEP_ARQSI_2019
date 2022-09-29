@@ -1,0 +1,51 @@
+export class Order{
+    id: number;
+    quantity: number;
+    date: Date;
+}
+
+Order{
+	client: {
+		id: number,
+		name:
+	},
+	products: [
+		{
+			id: number,
+			description :
+			price : 
+		}
+	]
+}
+	products
+
+
+export class User{
+    id: number
+    name : string;
+    email: string;
+    password: string;
+    address: string;
+    role: string;
+}
+
+
+verificar o operation
+
+backend da encomenda tem que verificar se o(s) produto(s) ou ids existem - node pedidos rest
+
+Trazer informação toda no node do produto (ficheiro json)
+trazer informação toda no node do cliente (ficheiro json)
+
+ir backend produtos buscar listagem e depois mandar ao backend das encomendas e verificar na encomenda se os produtos existem
+
+axios.all para fazer vários pedidos dos produtos
+
+If role user ="Admin" faz .... senão mensagem de erro ---- aplicar nos 2 classes
+
+
+2.5 Privacidade e proteção de dados
+Uma vez que o módulo de gestão de encomendas se encontra virado para o exterior é necessário ter especial
+atenção com a privacidade e proteção de dados à luz do RGPD. Assim é necessário que o sistema cumpra a
+legislação em vigor e, em especial, disponibilize as informações legais e informe o utilizador aquando do seu
+registo, bem como permita aceder e cancelar a sua conta nos casos e nas condições legalmente permitidas.
